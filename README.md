@@ -46,12 +46,12 @@ This is a Java Swing-based pharmaceutical inventory management system with two u
 
 2. Compile all Java files:
    ```
-   javac -d bin src/com/pharma/inventory/*.java src/com/pharma/inventory/model/*.java src/com/pharma/inventory/database/*.java
+   javac -cp "lib/mysql-connector-j-9.5.0.jar" -d bin src/com/pharma/inventory/*.java src/com/pharma/inventory/model/*.java src/com/pharma/inventory/database/*.java
    ```
 
 3. Run the application:
    ```
-   java -cp bin com.pharma.inventory.PharmaceuticalInventorySystem
+   java -cp "bin;lib/mysql-connector-j-9.5.0.jar" com.pharma.inventory.PharmaceuticalInventorySystem
    ```
 
 ### Option 2: Using an IDE (Eclipse, IntelliJ IDEA, NetBeans)
@@ -63,21 +63,28 @@ This is a Java Swing-based pharmaceutical inventory management system with two u
 ## Project Structure
 
 ```
-PharmaceuticalInventorySystem/
+TRAKMED/
+├── bin/
+├── lib/
+│   └── mysql-connector-j-9.5.0.jar
 ├── src/
 │   └── com/
 │       └── pharma/
-│           └── inventory/
-│               ├── PharmaceuticalInventorySystem.java (Main class)
-│               ├── LoginFrame.java
+│           ├── database/
+│           │   └── DatabaseManager.java
+│           ├── model/
+│           │   ├── Medicine.java
+│           │   └── StockRequest.java
+│           └── ui/
 │               ├── HospitalDashboard.java
-│               ├── SupplierDashboard.java
-│               ├── model/
-│               │   ├── Medicine.java
-│               │   └── StockRequest.java
-│               └── database/
-│                   └── DatabaseManager.java
-└── README.md
+│               ├── LoginFrame.java
+│               ├── PharmaceuticalInventory.java
+│               └── SupplierDashboard.java
+├── .gitattributes
+├── LICENSE
+├── README.md
+├── run.bat
+└── run.sh
 ```
 
 ## How It Works
@@ -104,10 +111,10 @@ The system comes pre-loaded with 10 medicines:
 
 ## Notes
 
-- All data is stored in memory and will be lost when the application closes
+- By default, all data is stored in memory and will be lost when the application closes
+- Optionally, data can be stored in a SQL database by providing connection details in the configuration (see setup instructions)
 - Low stock threshold is set to 50 units for most medicines
 - When fulfilling requests, the system adds requested quantity + 50 units buffer
 - All operations are logged with timestamps
 
-## Author
-Created for pharmaceutical inventory management and supply chain coordination.
+

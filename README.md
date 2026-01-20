@@ -1,70 +1,66 @@
-# Pharmaceutical Inventory Management System
+# 🏥 TRAKMED: Pharmaceutical Inventory Management System
 
-## Overview
-This is a Java Swing-based pharmaceutical inventory management system with two user types: Hospital and Supplier.
+**TRAKMED** is a Java Swing-based application designed to streamline the pharmaceutical supply chain. It bridges the gap between Hospital inventory needs and Supplier stock management through real-time synchronization, automated low-stock detection, and a seamless request-fulfillment cycle.
 
-## Features
+---
 
-### Hospital Dashboard
-1. View complete medicine inventory with stock status
-2. Add/Remove/Set stock quantities (for customer checkouts and restocking)
-3. Automatic low stock detection and supplier notification
-4. View all alerts sent to supplier
-5. Real-time synchronization with supplier database
 
-### Supplier Dashboard
-1. View all medicine inventory
-2. Add new medicines or modify existing stock
-3. View hospital stock requests with pending/fulfilled status
-4. Fulfill hospital requests (automatically updates hospital inventory)
-5. Clear fulfilled requests
-6. Real-time synchronization with hospital database
+## 🔍 Overview
 
-## Login Credentials
+This system solves the problem of manual stock tracking by automating the communication between hospitals and suppliers. 
+* **Hospitals** can manage their local inventory and automatically alert suppliers when stock runs low.
+* **Suppliers** can view these alerts as requests, fulfill them, and instantly update the hospital's inventory.
 
-- **Hospital User**
-  - Username: hospital
-  - Password: hospital123
+**Note:** By default, the system uses an in-memory database (data resets on close), but it is configured to support persistent storage via MySQL.
 
-- **Supplier User**
-  - Username: supplier
-  - Password: supplier123
+---
 
-## Technical Requirements
+## 🌟 Key Features
 
-- Java Development Kit (JDK) 8 or higher
-- No external libraries required (uses only Java Swing and core Java)
+### 🏥 Hospital Dashboard
+* **Inventory Management:** View complete medicine lists with real-time stock status.
+* **Stock Operations:** Add, Remove, or Set stock quantities (simulating customer checkouts or manual restocking).
+* **Automated Logic:**
+    * **Low Stock Detection:** Automatically flags items below **50 units**.
+    * **Supplier Notification:** Triggers an alert to the supplier dashboard immediately upon low stock.
+* **Alert History:** specific view of all alerts sent to the supplier.
+* **Real-time Sync:** Updates instantly when the supplier fulfills a request.
 
-## How to Compile and Run
+### 🚚 Supplier Dashboard
+* **Global Inventory View:** View and manage the master list of all medicines.
+* **Catalog Management:** Add new medicines or modify existing stock details.
+* **Request Fulfillment:**
+    * View stock requests with **Pending/Fulfilled** status.
+    * **One-Click Fulfillment:** Automatically updates the hospital's inventory (adds requested amount + 50 unit buffer).
+    * **Housekeeping:** Clear fulfilled requests from the view.
 
-### Option 1: Using Command Line
+---
 
-1. Navigate to the project directory:
-   ```
-   cd PharmaceuticalInventorySystem
-   ```
+## 🔐 Login Credentials
 
-2. Compile all Java files:
-   ```
-   javac -cp "lib/mysql-connector-j-9.5.0.jar" -d bin src/com/pharma/inventory/*.java src/com/pharma/inventory/model/*.java src/com/pharma/inventory/database/*.java
-   ```
+Use the following credentials to access the different dashboards:
 
-3. Run the application:
-   ```
-   java -cp "bin;lib/mysql-connector-j-9.5.0.jar" com.pharma.inventory.PharmaceuticalInventorySystem
-   ```
+| User Role | Username | Password |
+| :--- | :--- | :--- |
+| **Hospital** | `hospital` | `hospital123` |
+| **Supplier** | `supplier` | `supplier123` |
 
-### Option 2: Using an IDE (Eclipse, IntelliJ IDEA, NetBeans)
+---
 
-1. Import the project as a Java project
-2. Ensure the source folder is set to `src`
-3. Run `PharmaceuticalInventorySystem.java` as the main class
+## 🛠 Tech Stack & Requirements
 
-## Project Structure
+* **Language:** Java (JDK 8 or higher)
+* **GUI Framework:** Java Swing (Core Java)
+* **Database:** In-memory (Default) / MySQL (Optional via `mysql-connector-j-9.5.0.jar`)
+* **External Libraries:** None required for basic operation (Standard Java libraries only).
 
-```
+---
+
+## 📂 Project Structure
+
+```text
 TRAKMED/
-├── bin/
+├── bin/                        # Compiled .class files
 ├── lib/
 │   └── mysql-connector-j-9.5.0.jar
 ├── src/
@@ -83,9 +79,29 @@ TRAKMED/
 ├── .gitattributes
 ├── LICENSE
 ├── README.md
-├── run.bat
-└── run.sh
+├── run.bat                     # Windows execution script
+└── run.sh                      # Linux/Mac execution script
+
 ```
+
+
+## How to Compile and Run
+
+1. Navigate to the project directory:
+   ```
+   cd PharmaceuticalInventorySystem
+   ```
+
+2. Compile all Java files:
+   ```
+   javac -cp "lib/mysql-connector-j-9.5.0.jar" -d bin src/com/pharma/inventory/*.java src/com/pharma/inventory/model/*.java src/com/pharma/inventory/database/*.java
+   ```
+
+3. Run the application:
+   ```
+   java -cp "bin;lib/mysql-connector-j-9.5.0.jar" com.pharma.inventory.PharmaceuticalInventorySystem
+   ```
+
 
 ## How It Works
 
